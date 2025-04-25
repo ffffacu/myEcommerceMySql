@@ -10,9 +10,15 @@ app.use(express.urlencoded({ extended:true}));
 
 app.use(`/api`, router)
 app.use(`/ping`, async (req, res) => {
-  const [result] = await pool.query(`SELECT "hello world" as Result`)
-  res.send(result)
+  try {
+    const [result] = await pool.query(`SELECT "hello world" as Result`)
+    res.send(result)
+  } catch (error) {
+    console.error(`Error al conectar con la base de datos:${error}`);
+    res.status(500).json({ error: 'No se pudo conectar con la base de datos' });
+  }
 })
+
 
 app.listen(config.PORT, () => {
   console.log(`Servidor corriendo en el puerto ${config.PORT}`);

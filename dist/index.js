@@ -6,16 +6,21 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const index_routes_1 = __importDefault(require("./routes/index.routes"));
 const db_1 = require("./db");
+const config_1 = __importDefault(require("./config/config"));
 const app = (0, express_1.default)();
-const PORT = 3000;
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
 app.use(`/api`, index_routes_1.default);
 app.use(`/ping`, async (req, res) => {
-    const result = await db_1.pool.query("SELECT 1 + 1 AS solution");
-    console.log(result);
-    res.send(result);
+    try {
+        const [result] = await db_1.pool.query(`SELECT "hello world" as Result`);
+        res.send(result);
+    }
+    catch (error) {
+        console.error(`Error al conectar con la base de datos:${error}`);
+        res.status(500).json({ error: 'No se pudo conectar con la base de datos' });
+    }
 });
-app.listen(PORT, () => {
-    console.log(`Servidor corriendo en http://localhost:${PORT}`);
+app.listen(config_1.default.PORT, () => {
+    console.log(`Servidor corriendo en el puerto ${config_1.default.PORT}`);
 });
