@@ -9,7 +9,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended:true}));
 
 app.use(`/api`, router)
-app.use(`/ping`, async (req, res) => {
+app.use(`/`, async (req, res) => {
   try {
     const [result] = await pool.query(`SELECT "hello world" as Result`)
     res.send(result)
