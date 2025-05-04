@@ -7,8 +7,6 @@ const express_1 = __importDefault(require("express"));
 const index_routes_1 = __importDefault(require("./routes/index.routes"));
 const db_1 = require("./db");
 const config_1 = __importDefault(require("./config/config"));
-const path_1 = __importDefault(require("path"));
-const serve_favicon_1 = __importDefault(require("serve-favicon"));
 const cors_1 = __importDefault(require("cors"));
 const app = (0, express_1.default)();
 const corsOptions = {
@@ -17,8 +15,6 @@ const corsOptions = {
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
 };
 app.use((0, cors_1.default)(corsOptions));
-app.use(express_1.default.static(path_1.default.join(__dirname, 'public')));
-app.use((0, serve_favicon_1.default)(path_1.default.join(__dirname, 'public', 'favicon.ico')));
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
 app.use(`/api`, index_routes_1.default);
