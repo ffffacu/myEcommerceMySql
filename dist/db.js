@@ -1,15 +1,11 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.pool = void 0;
 const promise_1 = require("mysql2/promise");
-const config_1 = __importDefault(require("./config/config"));
 exports.pool = (0, promise_1.createPool)({
-    host: config_1.default.DB_HOST,
-    user: config_1.default.DB_USER,
-    password: config_1.default.DB_PASSWORD,
-    port: Number(config_1.default.DB_PORT),
-    database: config_1.default.DB_DATABASE,
+    host: 'switchback.proxy.rlwy.net', // Host de la base de datos
+    user: 'root', // Usuario
+    password: 'rdMpfMjPjzdnlzmBUrRStAEPfjTlzxXA', // Contraseña
+    port: 12592, // Puerto
+    database: 'railway', // Nombre de la base de datos
 });
