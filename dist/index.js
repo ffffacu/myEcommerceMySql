@@ -21,6 +21,9 @@ app.use(`/`, async (req, res) => {
         res.status(500).json({ error: 'No se pudo conectar con la base de datos' });
     }
 });
+app.get('/health', (req, res) => {
+    res.status(200).send('OK');
+});
 app.listen(config_1.default.PORT, () => {
     console.log(`Servidor corriendo en el puerto ${config_1.default.PORT}`);
 });
