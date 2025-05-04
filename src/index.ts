@@ -4,10 +4,18 @@ import { pool } from './db';
 import config from './config/config';
 import path from 'path';
 import favicon from 'serve-favicon';
+import cors from 'cors';
 
 const app = express();
 
 
+const corsOptions = {
+  origin: 'https://myecommercemysql-production.up.railway.app', 
+  credentials: true,  
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],  
+};
+
+app.use(cors(corsOptions));
 app.use(express.static(path.join(__dirname, 'public'))); 
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico'))); 
 
