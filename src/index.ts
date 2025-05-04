@@ -1,12 +1,12 @@
 import express from 'express';
 import router from './routes/index.routes';
-import { pool } from './db';
+import { pool, testConnection } from './db';
 import config from './config/config';
 
 import cors from 'cors';
 
 const app = express();
-
+testConnection();
 
 const corsOptions = {
   origin: 'https://myecommercemysql-production.up.railway.app', 

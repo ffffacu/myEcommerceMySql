@@ -4,6 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.pool = void 0;
+exports.testConnection = testConnection;
 const promise_1 = require("mysql2/promise");
 const config_1 = __importDefault(require("./config/config"));
 exports.pool = (0, promise_1.createPool)({
@@ -26,5 +27,3 @@ async function testConnection() {
         console.error('Error de conexión a la base de datos:', err);
     }
 }
-// Llama a la función para probar la conexión
-testConnection();

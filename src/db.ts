@@ -9,7 +9,7 @@ export const pool = createPool({
     database: config.DB_DATABASE,
 });
 
-async function testConnection() {
+export async function testConnection() {
     try {
         // Obtiene la conexión usando `await`
         const connection: PoolConnection = await pool.getConnection();
@@ -24,5 +24,3 @@ async function testConnection() {
     }
 }
 
-// Llama a la función para probar la conexión
-testConnection();
