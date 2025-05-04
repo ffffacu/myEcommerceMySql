@@ -11,7 +11,7 @@ const app = (0, express_1.default)();
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
 app.use(`/api`, index_routes_1.default);
-app.use(`/ping`, async (req, res) => {
+app.use(`/`, async (req, res) => {
     try {
         const [result] = await db_1.pool.query(`SELECT "hello world" as Result`);
         res.send(result);
