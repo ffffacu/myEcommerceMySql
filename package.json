@@ -15,7 +15,7 @@
   "description": "",
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^5.1.0",
+    "express": "^4.21.2",
     "mysql2": "^3.14.0",
     "serve-favicon": "^2.5.0"
   },
