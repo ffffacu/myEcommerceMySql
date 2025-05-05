@@ -6,7 +6,9 @@ import config from './config/config';
 import cors from 'cors';
 
 const app = express();
-testConnection();
+testConnection().catch((err) => {
+  console.error("Error al conectar con la base de datos (pero el servidor sigue):", err.message);
+});
 
 const corsOptions = {
   origin: 'https://myecommercemysql-production.up.railway.app', 

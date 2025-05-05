@@ -9,7 +9,9 @@ const db_1 = require("./db");
 const config_1 = __importDefault(require("./config/config"));
 const cors_1 = __importDefault(require("cors"));
 const app = (0, express_1.default)();
-(0, db_1.testConnection)();
+(0, db_1.testConnection)().catch((err) => {
+    console.error("Error al conectar con la base de datos (pero el servidor sigue):", err.message);
+});
 const corsOptions = {
     origin: 'https://myecommercemysql-production.up.railway.app',
     credentials: true,
