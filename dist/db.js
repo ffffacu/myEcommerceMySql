@@ -8,7 +8,7 @@ exports.testConnection = testConnection;
 const promise_1 = require("mysql2/promise");
 const config_1 = __importDefault(require("./config/config"));
 exports.pool = (0, promise_1.createPool)({
-    host: config_1.default.DB_HOST,
+    host: "switchback.proxy.rlwy.net",
     user: config_1.default.DB_USER,
     password: config_1.default.DB_PASSWORD,
     port: Number(config_1.default.DB_PORT),
