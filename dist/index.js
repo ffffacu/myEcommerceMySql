@@ -5,12 +5,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const index_routes_1 = __importDefault(require("./routes/index.routes"));
-const config_1 = __importDefault(require("./config/config"));
 const cors_1 = __importDefault(require("cors"));
+const PUERTO = 3000;
 const app = (0, express_1.default)();
 //testConnection();
 const corsOptions = {
-    origin: 'https://myecommercemysql-production.up.railway.app',
+    origin: '*',
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
 };
@@ -30,6 +30,6 @@ app.use(`/api`, index_routes_1.default);
 app.get('/health', (req, res) => {
     res.status(200).send('OK');
 });
-app.listen(config_1.default.PORT, () => {
-    console.log(`Servidor corriendo en el puerto ${config_1.default.PORT}`);
+app.listen(PUERTO, () => {
+    console.log(`Servidor corriendo en el puerto`);
 });

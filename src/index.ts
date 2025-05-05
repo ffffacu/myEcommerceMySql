@@ -5,11 +5,12 @@ import config from './config/config';
 
 import cors from 'cors';
 
+const PUERTO= 3000
 const app = express();
 //testConnection();
 
 const corsOptions = {
-  origin: 'https://myecommercemysql-production.up.railway.app', 
+  origin: '*', 
   credentials: true,  
   methods: ['GET', 'POST', 'PUT', 'DELETE'],  
 };
@@ -39,6 +40,6 @@ app.get('/health', (req, res) => {
   res.status(200).send('OK');
 });
 
-app.listen(config.PORT, () => {
-  console.log(`Servidor corriendo en el puerto ${config.PORT}`);
+app.listen(PUERTO, () => {
+  console.log(`Servidor corriendo en el puerto`);
 });
