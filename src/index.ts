@@ -16,11 +16,8 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
 
 app.use(`/api`, router);
 
@@ -35,10 +32,10 @@ app.use(`/`, async (req, res) => {
   }
 });
 
-app.get('/health', (req, res) => {
+app.use('/health', (req, res) => {
   res.status(200).send('OK');
 });
 
-app.listen(PUERTO, () => {
-  console.log(`Servidor corriendo en el puerto `);
+app.listen(config.PORT, () => {
+  console.log(`Servidor corriendo en el puerto ${config.PORT} `);
 });

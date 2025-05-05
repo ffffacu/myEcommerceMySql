@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const index_routes_1 = __importDefault(require("./routes/index.routes"));
 const db_1 = require("./db");
+const config_1 = __importDefault(require("./config/config"));
 const cors_1 = __importDefault(require("cors"));
 const app = (0, express_1.default)();
 (0, db_1.testConnection)();
@@ -29,9 +30,9 @@ app.use(`/`, async (req, res) => {
         res.status(500).json({ error: 'No se pudo conectar con la base de datos' });
     }
 });
-app.get('/health', (req, res) => {
+app.use('/health', (req, res) => {
     res.status(200).send('OK');
 });
-app.listen(PUERTO, () => {
-    console.log(`Servidor corriendo en el puerto `);
+app.listen(config_1.default.PORT, () => {
+    console.log(`Servidor corriendo en el puerto ${config_1.default.PORT} `);
 });
