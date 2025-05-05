@@ -1,13 +1,13 @@
 import express from 'express';
 import router from './routes/index.routes';
-//import { pool, testConnection } from './db';
+import { testConnection } from './db';
 import config from './config/config';
 
 import cors from 'cors';
 
 const PUERTO= 3000
 const app = express();
-//testConnection();
+testConnection();
 
 const corsOptions = {
   origin: '*', 

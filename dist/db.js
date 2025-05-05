@@ -3,6 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.testConnection = void 0;
 const config_1 = __importDefault(require("./config/config"));
 /*export const pool = createPool({
     host: config.DB_HOST,
@@ -43,4 +44,4 @@ const testConnection = async () => {
         console.error('Error al conectar con la base de datos:', error);
     }
 };
-testConnection();
+exports.testConnection = testConnection;

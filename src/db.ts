@@ -26,7 +26,7 @@ export async function testConnection() {
 
 import mysql from 'mysql2/promise';
 
-const testConnection = async () => {
+export const testConnection = async () => {
   try {
     const connection = await mysql.createConnection({
       host: config.DB_HOST,
@@ -43,6 +43,6 @@ const testConnection = async () => {
   }
 };
 
-testConnection();
+
 
 
