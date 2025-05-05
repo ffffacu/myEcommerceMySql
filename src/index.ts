@@ -1,14 +1,13 @@
 import express from 'express';
 import router from './routes/index.routes';
-import { testConnection } from './db';
+import { pool, testConnection } from './db';
 import config from './config/config';
 
 import cors from 'cors';
 
-const PUERTO= 3000
 const app = express();
 testConnection();
-
+const PUERTO = 3000;
 const corsOptions = {
   origin: '*', 
   credentials: true,  
@@ -28,11 +27,11 @@ app.use(`/api`, router);
 
 app.use(`/`, async (req, res) => {
   try {
-    //const [result] = await pool.query(`SELECT "hello world" as Result`);
-    //res.send(result);
- } catch (error) {
+    const [result] = await pool.query(`SELECT "hello world" as Result`);
+    res.send(result);
+  } catch (error) {
     console.error(`Error al conectar con la base de datos:${error}`);
-   res.status(500).json({ error: 'No se pudo conectar con la base de datos' });
+    res.status(500).json({ error: 'No se pudo conectar con la base de datos' });
   }
 });
 
@@ -41,5 +40,5 @@ app.get('/health', (req, res) => {
 });
 
 app.listen(PUERTO, () => {
-  console.log(`Servidor corriendo en el puerto`);
+  console.log(`Servidor corriendo en el puerto `);
 });
