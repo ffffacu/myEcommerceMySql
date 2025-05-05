@@ -6,7 +6,7 @@ import config from './config/config';
 import cors from 'cors';
 
 const app = express();
-testConnection();
+//testConnection();
 
 const corsOptions = {
   origin: 'https://myecommercemysql-production.up.railway.app', 
@@ -25,15 +25,15 @@ app.use(express.urlencoded({ extended: true }));
 app.use(`/api`, router);
 
 
-app.use(`/`, async (req, res) => {
-  try {
-    const [result] = await pool.query(`SELECT "hello world" as Result`);
-    res.send(result);
-  } catch (error) {
-    console.error(`Error al conectar con la base de datos:${error}`);
-    res.status(500).json({ error: 'No se pudo conectar con la base de datos' });
-  }
-});
+//app.use(`/`, async (req, res) => {
+//  try {
+//    const [result] = await pool.query(`SELECT "hello world" as Result`);
+//    res.send(result);
+//  } catch (error) {
+//    console.error(`Error al conectar con la base de datos:${error}`);
+//    res.status(500).json({ error: 'No se pudo conectar con la base de datos' });
+//  }
+//});
 
 app.get('/health', (req, res) => {
   res.status(200).send('OK');
