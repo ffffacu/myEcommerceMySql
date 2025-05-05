@@ -1,7 +1,7 @@
 import { createPool, PoolConnection } from "mysql2/promise";
 import config from "./config/config";
 
-export const pool = createPool({
+/*export const pool = createPool({
     host: config.DB_HOST,
     user: config.DB_USER,
     password: config.DB_PASSWORD,
@@ -22,5 +22,27 @@ export async function testConnection() {
     } catch (err) {
         console.error('Error de conexión a la base de datos:', err);
     }
-}
+}*/
+
+import mysql from 'mysql2/promise';
+
+const testConnection = async () => {
+  try {
+    const connection = await mysql.createConnection({
+      host: config.DB_HOST,
+      port: Number(config.DB_PORT),
+      user: config.DB_USER,
+      password: config.DB_PASSWORD,
+      database: config.DB_DATABASE,
+    });
+
+    console.log('Conexión exitosa a la base de datos');
+    await connection.end();
+  } catch (error) {
+    console.error('Error al conectar con la base de datos:', error);
+  }
+};
+
+testConnection();
+
 

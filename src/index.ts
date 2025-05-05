@@ -1,6 +1,6 @@
 import express from 'express';
 import router from './routes/index.routes';
-import { pool, testConnection } from './db';
+//import { pool, testConnection } from './db';
 import config from './config/config';
 
 import cors from 'cors';
@@ -28,8 +28,8 @@ app.use(`/api`, router);
 
 app.use(`/`, async (req, res) => {
   try {
-    const [result] = await pool.query(`SELECT "hello world" as Result`);
-    res.send(result);
+    //const [result] = await pool.query(`SELECT "hello world" as Result`);
+    //res.send(result);
  } catch (error) {
     console.error(`Error al conectar con la base de datos:${error}`);
    res.status(500).json({ error: 'No se pudo conectar con la base de datos' });
