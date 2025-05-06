@@ -24,7 +24,7 @@ app.use('/health', (req, res) => {
 });
 app.use(`/`, async (req, res) => {
     try {
-        const [result] = await db_1.pool.query(`SELECT "hello world" as Result`);
+        const [result] = await db_1.pool.query(`SELECT * FROM productos`);
         res.send(result);
     }
     catch (error) {

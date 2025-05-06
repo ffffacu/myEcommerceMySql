@@ -27,7 +27,7 @@ app.use('/health', (req, res) => {
 
 app.use(`/`, async (req, res) => {
   try {
-    const [result] = await pool.query(`SELECT "hello world" as Result`);
+    const [result] = await pool.query(`SELECT * FROM productos`);
     res.send(result);
   } catch (error) {
     console.error(`Error al conectar con la base de datos:${error}`);
