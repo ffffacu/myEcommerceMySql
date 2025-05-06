@@ -19,6 +19,9 @@ app.use((0, cors_1.default)(corsOptions));
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
 app.use(`/api`, index_routes_1.default);
+app.use('/health', (req, res) => {
+    res.status(200).send('OK');
+});
 app.use(`/`, async (req, res) => {
     try {
         const [result] = await db_1.pool.query(`SELECT "hello world" as Result`);
@@ -28,9 +31,6 @@ app.use(`/`, async (req, res) => {
         console.error(`Error al conectar con la base de datos:${error}`);
         res.status(500).json({ error: 'No se pudo conectar con la base de datos' });
     }
-});
-app.use('/health', (req, res) => {
-    res.status(200).send('OK');
 });
 app.listen(PUERTO, () => {
     console.log(`Servidor corriendo en el puerto`);

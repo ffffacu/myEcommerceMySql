@@ -21,6 +21,9 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(`/api`, router);
 
+app.use('/health', (req, res) => {
+  res.status(200).send('OK');
+});
 
 app.use(`/`, async (req, res) => {
   try {
@@ -32,9 +35,7 @@ app.use(`/`, async (req, res) => {
   }
 });
 
-app.use('/health', (req, res) => {
-  res.status(200).send('OK');
-});
+
 
 app.listen(PUERTO, () => {
   console.log(`Servidor corriendo en el puerto`);
