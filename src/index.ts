@@ -36,6 +36,6 @@ app.use('/health', (req, res) => {
   res.status(200).send('OK');
 });
 
-app.listen(config.PORT, () => {
-  console.log(`Servidor corriendo en el puerto ${config.PORT} `);
+app.listen(PUERTO, () => {
+  console.log(`Servidor corriendo en el puerto`);
 });
