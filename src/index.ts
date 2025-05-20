@@ -2,7 +2,7 @@ import "express";
 import express from 'express';
 import router from './routes/index.routes';
 import { testConnection } from './lib/db';
-import { authenticatorToken } from './middlewares/authenticatorSession.middlewares';
+//import { authenticatorToken } from './middlewares/authenticatorSession.middlewares';
 import cookieParser from 'cookie-parser';
 import swaggerUiExpress from 'swagger-ui-express';
 import { specs } from './config/swagger.config';
@@ -26,7 +26,7 @@ app.use(cookieParser());
 
 
 app.use(`/api-docs`, swaggerUiExpress.serve, swaggerUiExpress.setup(specs));
-app.use(`/api`,authenticatorToken(), router);
+app.use(`/api`, router);
 
 
 

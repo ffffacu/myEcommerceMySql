@@ -7,7 +7,7 @@ require("express");
 const express_1 = __importDefault(require("express"));
 const index_routes_1 = __importDefault(require("./routes/index.routes"));
 const db_1 = require("./lib/db");
-const authenticatorSession_middlewares_1 = require("./middlewares/authenticatorSession.middlewares");
+//import { authenticatorToken } from './middlewares/authenticatorSession.middlewares';
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const swagger_ui_express_1 = __importDefault(require("swagger-ui-express"));
 const swagger_config_1 = require("./config/swagger.config");
@@ -25,7 +25,7 @@ app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
 app.use((0, cookie_parser_1.default)());
 app.use(`/api-docs`, swagger_ui_express_1.default.serve, swagger_ui_express_1.default.setup(swagger_config_1.specs));
-app.use(`/api`, (0, authenticatorSession_middlewares_1.authenticatorToken)(), index_routes_1.default);
+app.use(`/api`, index_routes_1.default);
 app.listen(PUERTO, () => {
     console.log(`Servidor corriendo correctamente`);
 });
