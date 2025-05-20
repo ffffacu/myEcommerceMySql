@@ -24,6 +24,9 @@ app.use((0, cors_1.default)(corsOptions));
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
 app.use((0, cookie_parser_1.default)());
+app.use("/", (_req, res) => {
+    res.send("Welcome to ChisapWeb");
+});
 app.use(`/api-docs`, swagger_ui_express_1.default.serve, swagger_ui_express_1.default.setup(swagger_config_1.specs));
 app.use(`/api`, index_routes_1.default);
 app.listen(config_1.default.PORT, () => {

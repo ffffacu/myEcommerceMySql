@@ -24,7 +24,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 
-
+app.use("/", (_req, res) => {
+    res.send("Welcome to ChisapWeb")
+})
 app.use(`/api-docs`, swaggerUiExpress.serve, swaggerUiExpress.setup(specs));
 app.use(`/api`, router);
 
