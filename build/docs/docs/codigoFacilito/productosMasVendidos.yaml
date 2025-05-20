@@ -1,0 +1,15 @@
+paths:
+  /api/codigoFacilito/productoMasVendido:
+    get:
+      tags:
+        - Producto mas vendido
+      summary: ¿Cuáles es el producto más vendido y cuántas unidades vendió?
+      responses:
+        '200':
+          description: Producto obtenido correctamente
+          content:
+            application/json:
+              schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/ProductoMasVendidos'

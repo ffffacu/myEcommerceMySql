@@ -1,0 +1,15 @@
+paths:
+  /api/codigoFacilito/marcasEnEcommerce:
+    get:
+      tags:
+        - Marcas en ecommerce
+      summary: ¿Qué marcas tienen más productos activos en el ecommerce?
+      responses:
+        '200':
+          description: Marcas obtenidas correctamente
+          content:
+            application/json:
+              schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/MarcasEnEcommerce'

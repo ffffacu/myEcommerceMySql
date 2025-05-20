@@ -1,0 +1,15 @@
+paths:
+  /api/codigoFacilito/sucursalesConMasPedidos:
+    get:
+      tags:
+        - Sucursal con mas pedidos
+      summary: ¿Qué sucursales han tenido más pedidos?
+      responses:
+        '200':
+          description: Sucursales obtenidos correctamente
+          content:
+            application/json:
+              schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/SucursalesConMasPedidos'
