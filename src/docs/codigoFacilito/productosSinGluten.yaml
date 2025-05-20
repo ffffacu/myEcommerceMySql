@@ -1,0 +1,15 @@
+paths:
+  /api/codigoFacilito/productosSinGluten:
+    get:
+      tags:
+        - Productos sin gluten
+      summary: ¿Cuántos productos sin gluten se ofrecen y en qué categorías se concentran?
+      responses:
+        '200':
+          description: Productos sin gluten obtenidos correctamente
+          content:
+            application/json:
+              schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/ProductoSinGluten'

@@ -1,7 +1,11 @@
+import "express";
 import express from 'express';
 import router from './routes/index.routes';
-import { pool, testConnection } from './db';
-import config from './config/config';
+import { testConnection } from './lib/db';
+import { authenticatorToken } from './middlewares/authenticatorSession.middlewares';
+import cookieParser from 'cookie-parser';
+import swaggerUiExpress from 'swagger-ui-express';
+import { specs } from './config/swagger.config';
 
 import cors from 'cors';
 
@@ -15,28 +19,17 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
-app.use(`/api`, router);
 
-app.use('/health', (req, res) => {
-  res.status(200).send('OK');
-});
 
-app.use(`/`, async (req, res) => {
-  try {
-    const [result] = await pool.query(`SELECT * FROM productos`);
-    res.send(result);
-  } catch (error) {
-    console.error(`Error al conectar con la base de datos:${error}`);
-    res.status(500).json({ error: 'No se pudo conectar con la base de datos' });
-  }
-});
+app.use(`/api-docs`,authenticatorToken(), swaggerUiExpress.serve, swaggerUiExpress.setup(specs));
+app.use(`/api`,authenticatorToken(), router);
 
 
 
 app.listen(PUERTO, () => {
-  console.log(`Servidor corriendo en el puerto`);
+  console.log(`Servidor corriendo correctamente`);
 });
