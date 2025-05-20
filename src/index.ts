@@ -4,12 +4,12 @@ import router from './routes/index.routes';
 import { testConnection } from './lib/db';
 import { authenticatorToken } from './middlewares/authenticatorSession.middlewares';
 import cookieParser from 'cookie-parser';
-import env from "./config/config";
+//import env from "./config/config";
 import swaggerUiExpress from 'swagger-ui-express';
 import { specs } from './config/swagger.config';
 
 import cors from 'cors';
-
+const PORT = 3000
 const app = express();
 testConnection();
 const corsOptions = {
@@ -28,6 +28,6 @@ app.use(`/api-docs`, authenticatorToken(), swaggerUiExpress.serve, swaggerUiExpr
 app.use(`/api`,authenticatorToken(), router);
 
 
-app.listen(env.PORT, () => {
+app.listen(PORT, () => {
   console.log(`Servidor corriendo correctamente`);
 });
