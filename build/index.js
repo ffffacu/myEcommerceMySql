@@ -26,6 +26,6 @@ app.use(express_1.default.urlencoded({ extended: true }));
 app.use((0, cookie_parser_1.default)());
 app.use(`/api-docs`, swagger_ui_express_1.default.serve, swagger_ui_express_1.default.setup(swagger_config_1.specs));
 app.use(`/api`, index_routes_1.default);
-app.listen(config_1.default.DB_PORT, () => {
+app.listen(config_1.default.PORT, () => {
     console.log(`Servidor corriendo correctamente`);
 });

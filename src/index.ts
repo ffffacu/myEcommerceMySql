@@ -30,6 +30,6 @@ app.use(`/api`, router);
 
 
 
-app.listen(env.DB_PORT, () => {
+app.listen(env.PORT, () => {
   console.log(`Servidor corriendo correctamente`);
 });
