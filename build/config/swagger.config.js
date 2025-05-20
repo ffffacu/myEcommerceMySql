@@ -12,7 +12,17 @@ const swaggerOptions = {
             title: "Documentacion de mi Ecommerce",
             version: "1.0.0",
             description: "Ecommerce API"
-        }
+        },
+        servers: [
+            {
+                url: "https://myecommercemysql-production.up.railway.app",
+                description: "Producción en Railway"
+            },
+            {
+                url: "http://localhost:3000",
+                description: "Entorno local"
+            }
+        ]
     },
     apis: ['./src/docs/**/*.yaml']
 };
