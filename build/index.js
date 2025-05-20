@@ -24,7 +24,7 @@ app.use((0, cors_1.default)(corsOptions));
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
 app.use((0, cookie_parser_1.default)());
-app.use(`/api-docs`, (0, authenticatorSession_middlewares_1.authenticatorToken)(), swagger_ui_express_1.default.serve, swagger_ui_express_1.default.setup(swagger_config_1.specs));
+app.use(`/api-docs`, swagger_ui_express_1.default.serve, swagger_ui_express_1.default.setup(swagger_config_1.specs));
 app.use(`/api`, (0, authenticatorSession_middlewares_1.authenticatorToken)(), index_routes_1.default);
 app.listen(PUERTO, () => {
     console.log(`Servidor corriendo correctamente`);

@@ -25,7 +25,7 @@ app.use(cookieParser());
 
 
 
-app.use(`/api-docs`,authenticatorToken(), swaggerUiExpress.serve, swaggerUiExpress.setup(specs));
+app.use(`/api-docs`, swaggerUiExpress.serve, swaggerUiExpress.setup(specs));
 app.use(`/api`,authenticatorToken(), router);
 
 
