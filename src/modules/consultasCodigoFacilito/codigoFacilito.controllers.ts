@@ -2,6 +2,16 @@ import { Handler } from "express";
 import codigoFacilitoServices from "./codigoFacilito.services";
 
 
+const getTablas:Handler = async (_req, res) => {
+  try {
+    const tablas = await codigoFacilitoServices.getTablas();
+    res.status(200).json(tablas);
+  } catch (error) {
+    console.error('Error al obtener resumen:', error);
+    res.status(500).json({ error: 'Error interno del servidor' });
+  }
+};
+
 const getProductosMasVendidos: Handler = async (_req, res) => {
     try {
         const productosMasVendidos = await codigoFacilitoServices.getProductosMasVendidos();
@@ -73,5 +83,6 @@ export default {
     getSucursalesConMasPedidos,
     getProductosSinGluten,
     getPorcentajePedidosCancelados,
-    getProductoEnPromocion
+    getProductoEnPromocion,
+    getTablas
 }

@@ -19,13 +19,13 @@ const addProductToCart = (_req, res) => __awaiter(void 0, void 0, void 0, functi
         const tokenExtractor = _req.cookies.sessionToken;
         const token = (0, jwt_1.verifyToken)(tokenExtractor);
         if (token) {
-            const { productId, quantity, descuento } = _req.body;
-            yield carrito_productos_services_1.default.addProductToCart(tokenExtractor, productId, quantity, descuento);
+            const { productId, cantidad, descuento } = _req.body;
+            yield carrito_productos_services_1.default.addProductToCart(tokenExtractor, productId, cantidad, descuento);
             res.status(200).json({ status: "Succcess" });
         }
     }
     catch (error) {
-        res.status(500).json({ status: "Error", msg: "Error del servidor" });
+        res.status(500).json({ status: "Error", error });
     }
 });
 exports.default = { addProductToCart };

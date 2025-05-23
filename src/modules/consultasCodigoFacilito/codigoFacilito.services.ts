@@ -1,6 +1,31 @@
 import { pool } from "../../lib/db";
 
 
+
+const getTablas = async () =>{
+  const queries = {
+    clientes: 'SELECT * FROM clientes',
+    categorias: 'SELECT * FROM categorias',
+    sucursales: 'SELECT * FROM sucursales',
+    marcas: 'SELECT * FROM marcas',
+    productos: 'SELECT * FROM productos',
+    variaciones: 'SELECT * FROM variaciones',
+    carrito: 'SELECT * FROM carrito',
+    carrito_productos: 'SELECT * FROM carrito_productos',
+    pedidos: 'SELECT * FROM pedidos',
+    pedidos_productos: 'SELECT * FROM pedidos_productos',
+  };
+
+  const results: any = {};
+
+  for (const [key, query] of Object.entries(queries)) {
+    const [rows] = await pool.query(query);
+    results[key] = rows;
+  }
+
+  return results;
+};
+
 const getProductosMasVendidos = async () =>{
     try {
         const [rows] = await pool.query(`SELECT 
@@ -124,4 +149,4 @@ const getProductoEnPromocion = async () =>{
 
 
 
-export default {getProductosMasVendidos, getMejorCliente, getMarcasEnEcommerce, getSucursalesConMasPedidos,getProductosSinGluten, getPorcentajePedidosCancelados, getProductoEnPromocion}
+export default {getProductosMasVendidos, getMejorCliente, getMarcasEnEcommerce, getSucursalesConMasPedidos,getProductosSinGluten, getPorcentajePedidosCancelados, getProductoEnPromocion, getTablas}

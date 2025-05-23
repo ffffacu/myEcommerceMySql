@@ -1,0 +1,10 @@
+paths:
+  /api/codigoFacilito/tablas:
+    get:
+      tags:
+        - Tablas
+      summary: Trae todas las tablas de la base de datos
+      responses:
+        '200':
+          description: Tablas de la base de dato
+          

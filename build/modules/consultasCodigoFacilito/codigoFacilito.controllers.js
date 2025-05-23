@@ -13,6 +13,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const codigoFacilito_services_1 = __importDefault(require("./codigoFacilito.services"));
+const getTablas = (_req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const tablas = yield codigoFacilito_services_1.default.getTablas();
+        res.status(200).json(tablas);
+    }
+    catch (error) {
+        console.error('Error al obtener resumen:', error);
+        res.status(500).json({ error: 'Error interno del servidor' });
+    }
+});
 const getProductosMasVendidos = (_req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const productosMasVendidos = yield codigoFacilito_services_1.default.getProductosMasVendidos();
@@ -83,5 +93,6 @@ exports.default = {
     getSucursalesConMasPedidos,
     getProductosSinGluten,
     getPorcentajePedidosCancelados,
-    getProductoEnPromocion
+    getProductoEnPromocion,
+    getTablas
 };

@@ -28,7 +28,13 @@ const createCart = (token) => __awaiter(void 0, void 0, void 0, function* () {
     };
 });
 const updateCart = (id, data) => __awaiter(void 0, void 0, void 0, function* () {
-    const [result] = yield db_1.pool.execute('UPDATE carrito SET ? WHERE id = ?', [data, id]);
+    const fields = Object.keys(data);
+    const values = Object.values(data);
+    if (fields.length === 0) {
+        throw new Error("No hay campos para actualizar");
+    }
+    const setClause = fields.map(field => `${field} = ?`).join(', ');
+    const [result] = yield db_1.pool.execute(`UPDATE carrito SET ${setClause} WHERE id = ?`, [...values, id]);
     if (result.affectedRows === 0) {
         throw new Error('No se encontró el carrito para actualizar');
     }

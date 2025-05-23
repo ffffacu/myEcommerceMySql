@@ -33,16 +33,24 @@ const createCart = async (token: string): Promise<{ id: number; token: string; t
 };
 
 
-const updateCart = async (id: number, data: object): Promise<object & { cart_id: number }> => {
+const updateCart = async (id: number, data: Record<string, any>): Promise<object & { cart_id: number }> => {
+    const fields = Object.keys(data);
+    const values = Object.values(data);
+    if (fields.length === 0) {
+        throw new Error("No hay campos para actualizar");
+    }
+    const setClause = fields.map(field => `${field} = ?`).join(', ');
+
     const [result] = await pool.execute<ResultSetHeader>(
-        'UPDATE carrito SET ? WHERE id = ?',
-        [data, id]
+        `UPDATE carrito SET ${setClause} WHERE id = ?`,
+        [...values, id]
     );
     if (result.affectedRows === 0) {
         throw new Error('No se encontró el carrito para actualizar');
     }
     return { ...data, cart_id: id };
-}
+};
+
 
 const deleteCart = async (id: string): Promise<{ message: string; cart_id: string }> => {
     const [result] = await pool.execute<ResultSetHeader>(

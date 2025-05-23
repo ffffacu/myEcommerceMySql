@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const codigoFacilito_controllers_1 = __importDefault(require("./codigoFacilito.controllers"));
 const router = (0, express_1.Router)();
+router.get("/tablas", codigoFacilito_controllers_1.default.getTablas);
 router.get("/productoMasVendido", codigoFacilito_controllers_1.default.getProductosMasVendidos);
 router.get("/mejorCliente", codigoFacilito_controllers_1.default.getMejorCliente);
 router.get("/marcasEnEcommerce", codigoFacilito_controllers_1.default.getMarcasEnEcommerce);

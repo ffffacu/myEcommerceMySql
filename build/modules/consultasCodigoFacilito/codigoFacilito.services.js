@@ -10,6 +10,26 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const db_1 = require("../../lib/db");
+const getTablas = () => __awaiter(void 0, void 0, void 0, function* () {
+    const queries = {
+        clientes: 'SELECT * FROM clientes',
+        categorias: 'SELECT * FROM categorias',
+        sucursales: 'SELECT * FROM sucursales',
+        marcas: 'SELECT * FROM marcas',
+        productos: 'SELECT * FROM productos',
+        variaciones: 'SELECT * FROM variaciones',
+        carrito: 'SELECT * FROM carrito',
+        carrito_productos: 'SELECT * FROM carrito_productos',
+        pedidos: 'SELECT * FROM pedidos',
+        pedidos_productos: 'SELECT * FROM pedidos_productos',
+    };
+    const results = {};
+    for (const [key, query] of Object.entries(queries)) {
+        const [rows] = yield db_1.pool.query(query);
+        results[key] = rows;
+    }
+    return results;
+});
 const getProductosMasVendidos = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const [rows] = yield db_1.pool.query(`SELECT 
@@ -130,4 +150,4 @@ const getProductoEnPromocion = () => __awaiter(void 0, void 0, void 0, function*
         throw new Error('Error desconocido al obtener los clientes');
     }
 });
-exports.default = { getProductosMasVendidos, getMejorCliente, getMarcasEnEcommerce, getSucursalesConMasPedidos, getProductosSinGluten, getPorcentajePedidosCancelados, getProductoEnPromocion };
+exports.default = { getProductosMasVendidos, getMejorCliente, getMarcasEnEcommerce, getSucursalesConMasPedidos, getProductosSinGluten, getPorcentajePedidosCancelados, getProductoEnPromocion, getTablas };

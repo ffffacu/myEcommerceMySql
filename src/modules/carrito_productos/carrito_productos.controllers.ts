@@ -9,12 +9,12 @@ const addProductToCart:Handler = async (_req, res) => {
         const tokenExtractor = _req.cookies.sessionToken;
         const token = verifyToken(tokenExtractor);
         if(token){
-            const {productId, quantity, descuento} = _req.body;
-            await carritoServices.addProductToCart(tokenExtractor, productId, quantity, descuento);
+            const {productId, cantidad, descuento} = _req.body;
+            await carritoServices.addProductToCart(tokenExtractor, productId, cantidad, descuento);
             res.status(200).json({status:"Succcess"});
         }
     } catch (error) {
-        res.status(500).json({status:"Error", msg:"Error del servidor"});
+        res.status(500).json({status:"Error", error});
     }
 }
 

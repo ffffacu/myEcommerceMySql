@@ -18,9 +18,9 @@ const db_1 = require("../../lib/db");
 const addProductToCart = (token, productId, cantidad, descuento) => __awaiter(void 0, void 0, void 0, function* () {
     const cart = yield carrito_services_1.default.getCartByToken(token);
     const producto = yield variaciones_services_1.default.getVariacionById(productId);
-    if (cart && producto) {
-        yield db_1.pool.query('INSERT INTO carrito_productos (carrito_id, variacion_id, cantitdad, subtotal) VALUES (?, ?, ?, ?)', [cart._id, producto.id, cantidad, producto.precio]);
+    if (cart && producto && cantidad > 0 && typeof producto.precio === 'number') {
+        yield db_1.pool.query('INSERT INTO carrito_productos (carrito_id, variacion_id, cantidad, subtotal) VALUES (?, ?, ?, ?)', [cart.id, producto.id, cantidad, producto.precio]);
+        yield carrito_services_1.default.updateCart(cart.id, { total: cart.total + producto.precio * cantidad - descuento, descuento: cart.descuento + descuento });
     }
-    yield carrito_services_1.default.updateCart(cart._id, { total: cart.total + producto.precio * cantidad - descuento, descuento: cart.descuento + descuento });
 });
 exports.default = { addProductToCart };

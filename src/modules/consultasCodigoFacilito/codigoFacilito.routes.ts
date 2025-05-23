@@ -3,6 +3,7 @@ import codigoFacilito from "./codigoFacilito.controllers";
 
 const router = Router();
 
+router.get ("/tablas", codigoFacilito.getTablas);
 router.get("/productoMasVendido", codigoFacilito.getProductosMasVendidos);
 router.get("/mejorCliente", codigoFacilito.getMejorCliente);
 router.get("/marcasEnEcommerce", codigoFacilito.getMarcasEnEcommerce);
