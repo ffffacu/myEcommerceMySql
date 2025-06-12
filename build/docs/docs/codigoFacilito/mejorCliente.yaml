@@ -1,0 +1,15 @@
+paths:
+  /api/codigoFacilito/mejorCliente:
+    get:
+      tags:
+        - Mejor cliente
+      summary: ¿Qué cliente ha realizado más pedidos y cuánto ha gastado en total?
+      responses:
+        '200':
+          description: Clientes obtenidos correctamente
+          content:
+            application/json:
+              schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/MejorCliente'

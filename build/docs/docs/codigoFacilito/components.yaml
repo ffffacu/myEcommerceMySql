@@ -1,0 +1,150 @@
+components:
+  schemas:
+    MarcasEnEcommerce:
+      type: object
+      properties:
+        Marca_id:
+          type: integer
+          description: ID de la marca (tipo auto_increment en MySQL)
+        Nombre_de_marca:
+          type: string
+          description: Nombre de la marca (tipo varchar en MySQL)
+        Productos_en_ecommerce:
+          type: integer
+          description: Cantidad de productos de la marca en el ecommerce (tipo int en MySQL)
+      example:
+        Marca_id: 1
+        Nombre_de_marca: "Marca 1"
+        Productos_en_ecommerce: 10
+    MejorCliente:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: ID del cliente (tipo auto_increment en MySQL)
+        nombre:
+          type: string
+          description: Nombre del cliente (tipo varchar en MySQL)
+        apellido:
+          type: string
+          description: Apellido del cliente (tipo varchar en MySQL)
+        dni:
+          type: integer
+          description: DNI del cliente (tipo int en MySQL)
+        cumpleanos:
+          type: string
+          description: Fecha de cumpleaños del cliente (tipo date en MySQL)
+        direccion:
+          type: string
+          description: Dirección del cliente (tipo varchar en MySQL)
+        email:
+          type: string
+          description: Correo electrónico del cliente (tipo varchar en MySQL)
+        telefono:
+          type: integer
+          description: Telefono del cliente (tipo int en MySQL)
+        observacion:
+          type: string
+          description: Observación del cliente (tipo varchar en MySQL)
+        suscripcion:
+          type: boolean
+          description: Suscripción del cliente (tipo boolean en MySQL)
+        created_at:
+          type: string
+          description: Fecha de creación del cliente (tipo datetime en MySQL)
+        cantidad_de_pedidos:
+          type: integer
+          description: Cantidad de pedidos del cliente (tipo int en MySQL)
+        tital_gastado:
+          type: number
+          description: Total gastado por el cliente (tipo decimal en MySQL)
+      example:
+        id: 1
+        nombre: "John"
+        apellido: "Doe"
+        dni: 12345678
+        cumpleanos: "1990-01-01"
+        direccion: "Calle 123"
+        email: "9yT6U@example.com"
+        telefono: 123456789
+        observacion: "Observación del cliente"
+        suscripcion: true
+        created_at: "2023-01-01 00:00:00"
+        cantidad_de_pedidos: 10
+        tital_gastado: 100.00
+    PorcentajePedidosCancelados:
+      type: object
+      properties:
+        total_pedidos:
+          type: integer
+          description: Total de pedidos (tipo int en MySQL)
+        pedidos_cancelados:
+            type: string
+            description: Total de pedidos cancelados (tipo varchar en MySQL)
+        porcentaje_cancelados:
+            type: number
+            description: Porcentaje de pedidos cancelados (tipo decimal en MySQL)
+      example:
+        total_pedidos: 100
+        pedidos_cancelados: 10
+        porcentaje_cancelados: 10.33
+    ProductosEnPromocion:
+      type: object
+      properties:
+        productos_en_promocion:
+          type: string
+          description: Nombre del producto en promoción (tipo varchar en MySQL)
+        precio:
+          type: number
+          description: Precio del producto en promoción (tipo decimal en MySQL)
+        precio_promocion:
+          type: number
+          description: Precio promoción del producto en promoción (tipo decimal en MySQL)
+      example:
+        productos_en_promocion: "Coca Cola"
+        precio: 100.00
+        precio_promocion: 50.00
+    ProductoMasVendidos:
+      type: object
+      properties:
+        producto_id:
+          type: integer
+          description: ID del producto (tipo auto_increment en MySQL)
+        producto_mas_vendido:
+          type: string
+          description: Nombre del producto más vendido (tipo varchar en MySQL)
+        cantidad:
+          type: integer
+          description: Cantidad vendida del producto más vendido (tipo int en MySQL)
+      example:
+        producto_id: 1
+        producto_mas_vendido: "Coca Cola"
+        cantidad: 10
+    ProductoSinGluten:
+      type: object
+      properties:
+        categoria:
+          type: string
+          description: Nombre de la categoría (tipo varchar en MySQL)
+        cantidad_de_productos_sinGluten:
+          type: integer
+          description: Cantidad de productos sin gluten en la categoría (tipo int en MySQL)
+      example:
+        categoria: "Alfajores"
+        cantidad_de_productos_sinGluten: 10
+    SucursalesConMasPedidos:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: ID de la sucursal (tipo auto_increment en MySQL)
+        nombre:
+          type: string
+          description: Nombre de la sucursal (tipo varchar en MySQL)
+        pedidos:
+          type: integer
+          description: Cantidad de pedidos en la sucursal (tipo int en MySQL)
+      example:
+        id: 1
+        nombre: "Sucursal Norte"
+        pedidos: 10

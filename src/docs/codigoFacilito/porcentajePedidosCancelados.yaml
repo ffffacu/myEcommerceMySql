@@ -1,0 +1,15 @@
+paths:
+  /api/codigoFacilito/porcentajePedidosCancelados:
+    get:
+      tags:
+        - Porcentaje de pedidos cancelados
+      summary: ¿Qué porcentaje de pedidos han sido cancelado?
+      responses:
+        '200':
+          description: Porcentajes obtenidos correctamente
+          content:
+            application/json:
+              schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/PorcentajePedidosCancelados'

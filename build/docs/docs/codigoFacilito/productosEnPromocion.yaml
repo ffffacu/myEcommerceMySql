@@ -1,0 +1,15 @@
+paths:
+  /api/codigoFacilito/productoEnPromocion:
+    get:
+      tags:
+        - Productos en promoción
+      summary: ¿Qué productos están en promoción?
+      responses:
+        '200':
+          description: Productos obtenidos correctamente
+          content:
+            application/json:
+              schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/ProductosEnPromocion'
