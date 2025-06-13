@@ -11,9 +11,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const db_1 = require("../../lib/db");
 const create = (data) => __awaiter(void 0, void 0, void 0, function* () {
-    const { producto_id, variacion, precio, precioPromocion, esPromocion, enEcommerce, imagen, estado = true, } = data;
-    const [result] = yield db_1.pool.query(`INSERT INTO variaciones (producto_id, variacion, precio, precioPromocion, esPromocion, enEcommerce, imagen, estado)
-     VALUES (?, ?, ?, ?, ?, ?, ?, ?)`, [producto_id, variacion, precio, precioPromocion, esPromocion, enEcommerce, imagen, estado]);
+    const columnas = Object.keys(data).join(", ");
+    const placeholder = Object.keys(data).map(() => "?").join(",");
+    const valores = Object.values(data);
+    const [result] = yield db_1.pool.query(`INSERT INTO variaciones (${columnas})
+     VALUES (${placeholder})`, valores);
     const id = result.insertId;
     return getById(id);
 });
