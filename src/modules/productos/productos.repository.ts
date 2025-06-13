@@ -18,7 +18,7 @@ const getProductos = async ( options: { page?: number; limit?: number }) => {
   const offset = (page - 1) * limit;
 
   const [rows]: any = await pool.query(
-    "SELECT * FROM products WHERE estado = true LIMIT ? OFFSET ?",
+    "SELECT * FROM productos WHERE estado = true LIMIT ? OFFSET ?",
     [limit, offset]
   );
   return rows;
@@ -26,7 +26,7 @@ const getProductos = async ( options: { page?: number; limit?: number }) => {
 
 const getProductosPorId = async (id: number):Promise<Producto> =>{
   const [rows]: any = await pool.query(
-    "SELECT * FROM products WHERE id = ? AND estado = true",
+    "SELECT * FROM productos WHERE id = ? AND estado = true",
     [id]
   );
   return rows[0];
@@ -38,7 +38,7 @@ const crearProducto = async (data: object) => {
   const placeholders = Object.keys(data).map(() => '?').join (', ');
   const valores = Object.values(data);
 
-  const [result]: any = await pool.query(`INSERT INTO products (${columnas}) VALUES (${placeholders})`,valores);
+  const [result]: any = await pool.query(`INSERT INTO productos (${columnas}) VALUES (${placeholders})`,valores);
   const newProductId = result.insertId;
   return getProductosPorId(newProductId);
 };
@@ -52,13 +52,13 @@ const update = async (id: number, data: object) => {
   const updates = fields.map(field => `${field} = ?`).join(", ");
   values.push(id);
 
-  await pool.query(`UPDATE products SET ${updates} WHERE id = ?`, values);
+  await pool.query(`UPDATE productos SET ${updates} WHERE id = ?`, values);
 
   return getProductosPorId(id);
 };
 
 const deleteOne = async (id: number) => {
-  await pool.query("UPDATE products SET estado = false WHERE id = ?", [id]);
+  await pool.query("UPDATE productos SET estado = false WHERE id = ?", [id]);
   return getProductosPorId(id);
 };
 
