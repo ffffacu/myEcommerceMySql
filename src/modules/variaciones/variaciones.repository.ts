@@ -1,20 +1,25 @@
 import { pool } from "../../lib/db";
+import { RowDataPacket } from "mysql2";
 
-const create = async (data: any) => {
-  const {
-    producto_id,
-    variacion,
-    precio,
-    precioPromocion,
-    esPromocion,
-    enEcommerce,
-    imagen,
-    estado = true,
-  } = data;
+export interface Variaciones extends RowDataPacket{
+  producto_id: number
+  variacion: string
+  precio: number
+  precioPromocion?: number
+  esPromocion: boolean
+  enEcommerce: boolean
+  imagen?:string
+  estado: boolean
+}
+
+const create = async (data: Variaciones)  => {
+   const columnas = Object.keys(data).join(", ");
+   const placeholder = Object.keys(data).map(()=> "?").join(",");
+   const valores = Object.values(data);
   const [result] = await pool.query(
-    `INSERT INTO variaciones (producto_id, variacion, precio, precioPromocion, esPromocion, enEcommerce, imagen, estado)
-     VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
-    [producto_id, variacion, precio, precioPromocion, esPromocion, enEcommerce, imagen, estado]
+    `INSERT INTO variaciones (${columnas})
+     VALUES (${placeholder})`,
+    valores
   );
 
   const id = (result as any).insertId;
@@ -22,8 +27,8 @@ const create = async (data: any) => {
 };
 
 // READ ALL
-const getAll = async () => {
-  const [rows] = await pool.query(`SELECT * FROM variaciones WHERE estado = true`);
+const getAll = async ():  Promise<Variaciones[]>  => {
+  const [rows] = await pool.query<Variaciones[]>(`SELECT * FROM variaciones WHERE estado = true`);
   return rows;
 };
 
