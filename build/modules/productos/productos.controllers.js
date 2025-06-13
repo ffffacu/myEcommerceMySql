@@ -28,7 +28,48 @@ const getProductos = (_req, res) => __awaiter(void 0, void 0, void 0, function* 
         res.status(200).json({ status: "ok", data: productos });
     }
     catch (error) {
-        res.status(500).json({ status: "Error al traer productos", Error });
+        res.status(500).json({ status: "Error al traer productos", error });
     }
 });
-exports.default = { getProductos };
+const getProductosPorId = (_req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const id = _req.params.id;
+        const productoId = yield productos_services_1.default.getProductsById(Number(id));
+        res.status(200).json({ status: "ok", data: productoId });
+    }
+    catch (error) {
+        res.status(500).json({ status: "Error al traer producto por id", error });
+    }
+});
+const acatualizarProducto = (_req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const id = _req.params.id;
+        const data = _req.body;
+        const result = yield productos_services_1.default.actualizarPorducto(Number(id), data);
+        res.status(200).json({ status: "Ok", data: result });
+    }
+    catch (error) {
+        res.status(500).json({ status: "Error al actualiza producto", error });
+    }
+});
+const crearProducto = (_req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const data = _req.body;
+        const result = yield productos_services_1.default.crearProducto(data);
+        res.status(200).json({ status: "ok", data: result });
+    }
+    catch (error) {
+        res.status(500).json({ status: "Error al crear producto", error });
+    }
+});
+const borrarProducto = (_req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const id = _req.params.id;
+        const result = yield productos_services_1.default.borrarProducto(Number(id));
+        res.status(200).json({ status: "ok", borrado: result });
+    }
+    catch (error) {
+        res.status(500).json({ status: "Error al borrar producto", error });
+    }
+});
+exports.default = { getProductos, getProductosPorId, acatualizarProducto, crearProducto, borrarProducto };

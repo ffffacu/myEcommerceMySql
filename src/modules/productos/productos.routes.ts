@@ -4,7 +4,13 @@ import productosControllers from "./productos.controllers";
 const router = Router();
 
 
-router.use("/",productosControllers.getProductos);
+router.get("/",productosControllers.getProductos);
+router.get("/:id", productosControllers.getProductosPorId);
+router.post("/",productosControllers.crearProducto);
+router.put("/:id",productosControllers.acatualizarProducto);
+router.delete("/:id",productosControllers.borrarProducto)
+
+
 
 
 export default router
