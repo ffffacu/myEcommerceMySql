@@ -30,5 +30,15 @@ const crearPedido: Handler = async (_req,res)=>{
     }
 }
 
+const finalizarPedido: Handler = async (_req,res) =>{
+    try {
+        const id = _req.params.id
+        await pedidosServices.finalizarPedido(Number(id));
+        res.status(200).json({status: "Pedido finalizado"})
+    } catch (error) {
+        res.status(500).json({status: "Error al traer el pedido", Error})
+    }
+}
 
-export default {getPedidos, getPedidosId, crearPedido}
+
+export default {getPedidos, getPedidosId, crearPedido, finalizarPedido}

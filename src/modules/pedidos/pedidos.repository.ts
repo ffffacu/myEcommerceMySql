@@ -35,4 +35,7 @@ const crearPedido = async (data: Pedido): Promise<Pedido[]> =>{
     return getPedidoId(id)
 }
 
-export default { getPedidos, getPedidoId, crearPedido}
+const finalizarPedido = async(id:number)=>{
+    await pool.query("UPDATE pedidos SET finalizado = true WHERE id = id",id)
+}
+export default { getPedidos, getPedidoId, crearPedido, finalizarPedido}

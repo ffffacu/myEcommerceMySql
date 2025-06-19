@@ -9,4 +9,5 @@ const router = (0, express_1.Router)();
 router.get("/", pedidos_controllers_1.default.getPedidos);
 router.get("/:id", pedidos_controllers_1.default.getPedidosId);
 router.post("/", pedidos_controllers_1.default.crearPedido);
+router.put("/:id", pedidos_controllers_1.default.finalizarPedido);
 exports.default = router;

@@ -16,4 +16,5 @@ const pedidos_repository_1 = __importDefault(require("./pedidos.repository"));
 const getPedidos = () => __awaiter(void 0, void 0, void 0, function* () { return yield pedidos_repository_1.default.getPedidos(); });
 const getPedidoId = (id) => __awaiter(void 0, void 0, void 0, function* () { return yield pedidos_repository_1.default.getPedidoId(id); });
 const crearPedido = (data) => __awaiter(void 0, void 0, void 0, function* () { return yield pedidos_repository_1.default.crearPedido(data); });
-exports.default = { getPedidos, getPedidoId, crearPedido };
+const finalizarPedido = (id) => __awaiter(void 0, void 0, void 0, function* () { return yield pedidos_repository_1.default.finalizarPedido(id); });
+exports.default = { getPedidos, getPedidoId, crearPedido, finalizarPedido };
