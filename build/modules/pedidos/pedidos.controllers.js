@@ -42,4 +42,14 @@ const crearPedido = (_req, res) => __awaiter(void 0, void 0, void 0, function* (
         res.status(500).json({ status: "Error al crear pedido", Error });
     }
 });
-exports.default = { getPedidos, getPedidosId, crearPedido };
+const finalizarPedido = (_req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const id = _req.params.id;
+        yield pedidos_services_1.default.finalizarPedido(Number(id));
+        res.status(200).json({ status: "Pedido finalizado" });
+    }
+    catch (error) {
+        res.status(500).json({ status: "Error al traer el pedido", Error });
+    }
+});
+exports.default = { getPedidos, getPedidosId, crearPedido, finalizarPedido };
