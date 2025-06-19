@@ -27,6 +27,6 @@ const crearPedido = (data) => __awaiter(void 0, void 0, void 0, function* () {
     return getPedidoId(id);
 });
 const finalizarPedido = (id) => __awaiter(void 0, void 0, void 0, function* () {
-    yield db_1.pool.query("UPDATE pedidos SET finalizado = true WHERE id = id", id);
+    yield db_1.pool.query("UPDATE pedidos SET finalizado = true WHERE id = ?", id);
 });
 exports.default = { getPedidos, getPedidoId, crearPedido, finalizarPedido };

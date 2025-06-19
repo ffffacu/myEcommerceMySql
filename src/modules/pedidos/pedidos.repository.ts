@@ -36,6 +36,6 @@ const crearPedido = async (data: Pedido): Promise<Pedido[]> =>{
 }
 
 const finalizarPedido = async(id:number)=>{
-    await pool.query("UPDATE pedidos SET finalizado = true WHERE id = id",id)
+    await pool.query("UPDATE pedidos SET finalizado = true WHERE id = ?",id)
 }
 export default { getPedidos, getPedidoId, crearPedido, finalizarPedido}
