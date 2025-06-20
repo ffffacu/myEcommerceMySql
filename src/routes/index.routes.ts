@@ -10,6 +10,7 @@ import pedidoRoutes from '../modules/pedidos/pedidos.routes';
 import pedidosProductosRoutes from '../modules/pedidos_productos/pedidos_productos.routes';
 import clientesRouter from '../modules/clientes/clientes.routes';
 import productosRouter from '../modules/productos/productos.routes';
+import usuariosRouter from '../modules/usuarios/usuarios.routes'
 
 const router = Router();
 
@@ -24,6 +25,7 @@ router.use('/pedidos', pedidoRoutes);
 router.use('/pedidoProductos', pedidosProductosRoutes);
 router.use('/clientes', clientesRouter)
 router.use('/productos',productosRouter)
+router.use('/usuarios', usuariosRouter)
 
 
 export default router

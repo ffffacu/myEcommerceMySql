@@ -15,6 +15,7 @@ const pedidos_routes_1 = __importDefault(require("../modules/pedidos/pedidos.rou
 const pedidos_productos_routes_1 = __importDefault(require("../modules/pedidos_productos/pedidos_productos.routes"));
 const clientes_routes_1 = __importDefault(require("../modules/clientes/clientes.routes"));
 const productos_routes_1 = __importDefault(require("../modules/productos/productos.routes"));
+const usuarios_routes_1 = __importDefault(require("../modules/usuarios/usuarios.routes"));
 const router = (0, express_1.Router)();
 router.use('/carrito', carrito_routes_1.default);
 router.use('/codigoFacilito', codigoFacilito_routes_1.default);
@@ -27,4 +28,5 @@ router.use('/pedidos', pedidos_routes_1.default);
 router.use('/pedidoProductos', pedidos_productos_routes_1.default);
 router.use('/clientes', clientes_routes_1.default);
 router.use('/productos', productos_routes_1.default);
+router.use('/usuarios', usuarios_routes_1.default);
 exports.default = router;
