@@ -10,7 +10,7 @@ interface Cart extends RowDataPacket {
 }
 
 const getCart = async (): Promise<Cart[]> => {
-    const [rows] = await pool.execute<Cart[]>('SELECT carrito.total, carrito.descuento, variaciones.variacion, variaciones.precio,carrito_productos.cantidad,variaciones.precioPromocion FROM carrito_productos JOIN carrito ON carrito_productos.carrito_id = carrito.id JOIN variaciones ON carrito_productos.variacion_id = variaciones.id');
+    const [rows] = await pool.execute<Cart[]>('SELECT carrito.id,carrito.total, carrito.descuento, variaciones.variacion, variaciones.precio,carrito_productos.cantidad,variaciones.precioPromocion FROM carrito_productos JOIN carrito ON carrito_productos.carrito_id = carrito.id JOIN variaciones ON carrito_productos.variacion_id = variaciones.id');
     return rows;
 }
 
