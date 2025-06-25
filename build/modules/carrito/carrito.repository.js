@@ -11,7 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const db_1 = require("../../lib/db");
 const getCart = () => __awaiter(void 0, void 0, void 0, function* () {
-    const [rows] = yield db_1.pool.execute('SELECT carrito.id,carrito.total, carrito.descuento, variaciones.variacion, variaciones.precio,carrito_productos.cantidad,variaciones.precioPromocion FROM carrito_productos JOIN carrito ON carrito_productos.carrito_id = carrito.id JOIN variaciones ON carrito_productos.variacion_id = variaciones.id');
+    const [rows] = yield db_1.pool.execute('SELECT carrito.id,carrito.total, carrito.descuento, variaciones.variacion, variaciones.precio,carrito_productos.cantidad,variaciones.precioPromocion FROM carrito_productos JOIN carrito ON carrito_productos.carrito_id = carrito.id JOIN variaciones ON carrito_productos.variacion_id = variaciones.id ORDER BY carrito.id ASC');
     return rows;
 });
 const getCartId = (id) => __awaiter(void 0, void 0, void 0, function* () {

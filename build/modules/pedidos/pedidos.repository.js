@@ -11,7 +11,31 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const db_1 = require("../../lib/db");
 const getPedidos = () => __awaiter(void 0, void 0, void 0, function* () {
-    const [rows] = yield db_1.pool.query("SELECT * FROM pedidos");
+    const [rows] = yield db_1.pool.query(`
+SELECT 
+  p.id AS pedido_id,
+  c.nombre,
+  c.apellido,
+  c.dni,
+  p.pago,
+  p.direccion,
+  p.delivery,
+  p.total,
+  p.observacion,
+  GROUP_CONCAT(
+    CONCAT(
+      v.variacion, ' x', pd.cantidad,
+      ' ($', pd.subtotal, ')'
+    ) SEPARATOR ' | '
+  ) AS productos
+FROM pedidos_productos pd
+JOIN pedidos p ON pd.pedido_id = p.id
+JOIN variaciones v ON pd.variacion_id = v.id
+JOIN clientes c ON p.cliente_id = c.id
+WHERE p.finalizado = false
+GROUP BY p.id
+ORDER BY p.id ASC;
+`);
     return rows;
 });
 const getPedidoId = (id) => __awaiter(void 0, void 0, void 0, function* () {

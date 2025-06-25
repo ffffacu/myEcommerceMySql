@@ -17,7 +17,31 @@ export interface Pedido extends RowDataPacket{
 
 
 const getPedidos = async (): Promise<Pedido[]> =>{
-    const [rows] = await pool.query<Pedido[]>("SELECT * FROM pedidos");
+    const [rows] = await pool.query<Pedido[]>(`
+SELECT 
+  p.id AS pedido_id,
+  c.nombre,
+  c.apellido,
+  c.dni,
+  p.pago,
+  p.direccion,
+  p.delivery,
+  p.total,
+  p.observacion,
+  GROUP_CONCAT(
+    CONCAT(
+      v.variacion, ' x', pd.cantidad,
+      ' ($', pd.subtotal, ')'
+    ) SEPARATOR ' | '
+  ) AS productos
+FROM pedidos_productos pd
+JOIN pedidos p ON pd.pedido_id = p.id
+JOIN variaciones v ON pd.variacion_id = v.id
+JOIN clientes c ON p.cliente_id = c.id
+WHERE p.finalizado = false
+GROUP BY p.id
+ORDER BY p.id ASC;
+`);
     return rows
 }
 
