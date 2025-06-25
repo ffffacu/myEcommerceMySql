@@ -13,14 +13,18 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const usuarios_services_1 = __importDefault(require("./usuarios.services"));
-const getUsersLogin = (_req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const getUsersLogin = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const data = _req.body;
+        const data = req.body;
         const result = yield usuarios_services_1.default.getUsersLogin(data);
-        res.status(200).json({ status: "ok", usuario: result });
+        if (result.length === 0) {
+            res.status(401).json({ status: "error", message: "Usuario o contraseña incorrectos" });
+            return; // Salir temprano, sin retornar res
+        }
+        res.status(200).json({ status: "ok", usuario: result[0] });
     }
     catch (error) {
-        res.status(500).json({ status: "Error al traer el usuario", error });
+        res.status(500).json({ status: "error", message: "Error al traer el usuario", error });
     }
 });
 exports.default = { getUsersLogin };

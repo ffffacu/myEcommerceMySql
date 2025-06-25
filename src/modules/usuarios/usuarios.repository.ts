@@ -11,7 +11,7 @@ export interface Usuarios extends RowDataPacket{
 
 const getUsersLogin = async (data:{usuario:string, contraseña: string}) => {
     const { usuario, contraseña} = data
-     const [rows] = await pool.query("SELECT * FROM usuarios WHERE usuario = ? AND contraseña = ? ",[usuario, contraseña]);
+     const [rows] = await pool.query<RowDataPacket[]>("SELECT * FROM usuarios WHERE usuario = ? AND contraseña = ? ",[usuario, contraseña]); 
      return rows
     }
 
