@@ -28,6 +28,7 @@ SELECT
   p.delivery,
   p.total,
   p.observacion,
+  p.finalizado,
   GROUP_CONCAT(
     CONCAT(
       v.variacion, ' x', pd.cantidad,
